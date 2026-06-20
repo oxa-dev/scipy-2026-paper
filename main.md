@@ -52,9 +52,9 @@ increasingly produces evidence — interactive figures, multi-gigabyte datasets,
 executable notebooks — that simply cannot be expressed in a PDF. Second,
 machine-assisted discovery and AI systems perform far more reliably when they can
 operate over structured, interoperable components rather than scraping
-unstructured prose. AI can read anything, but without shared standards it only
-reinforces PDF-era incentives. A modular, structured substrate is the
-precondition for both human and machine reuse, and it is the bet OXA makes.
+unstructured prose. AI can read anything, but without shared standards it
+reinforces PDF-era incentives and lowest common denominator tools.
+A modular, structured substrate is the precondition for both human and machine reuse, and it is the bet OXA makes.
 
 This paper is itself written in MyST Markdown and submitted through the SciPy
 proceedings toolchain, which since 2024 has been built on Curvenote
@@ -71,9 +71,7 @@ composable. A user can `import` what they need, build something new, and the
 result inherits the trustworthiness of its constituents. Progress is
 multiplicative because integration is cheap. The papers we write about that work
 are, by comparison, monolithic and integration-hostile: the figure cannot be
-cited independently of the paper, the data cannot be queried in the figure's
-coordinates, and the code cannot be run against the data without re-implementing
-context the paper held only implicitly.
+cited independently of the paper, the data cannot be queried from the paper, and the code cannot be run against the data without re-implementing context the paper held only implicitly.
 
 It is worth being precise about a distinction that is often blurred in
 conversations about open science. _Modularity_ and _disaggregation_ — placing
@@ -105,12 +103,12 @@ recombined, and extended without losing their integrity or provenance
   - Inherited and travels with object
 * - System result
   - Sprawl of scientific components, loosely connected
-  - Integrated system
+  - Integrated system with provenance
 ```
 
 Modular science is the bet that scientific outputs can become as composable as
 scientific software, given the right standards, identifiers, tooling, and
-packaging infrastructure. The emerging primitives are visible: `import figure from paper` is no longer only a metaphor. With component-level identifiers and a
+packaging infrastructure. The emerging primitives are visible: `import figure from paper` is no longer a metaphor. With component-level identifiers and a
 structured-document standard, a figure published in one preprint can be embedded —
 with full provenance — in a review article, a textbook, a grant proposal, another
 lab's analysis notebook, or an AI chat. With the right standards the figure stays alive; the data underneath it stays addressable; updates propagate; attribution is automatic.
