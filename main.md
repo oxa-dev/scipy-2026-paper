@@ -54,7 +54,9 @@ machine-assisted discovery and AI systems perform far more reliably when they ca
 operate over structured, interoperable components rather than scraping
 unstructured prose. AI can read anything, but without shared standards it
 reinforces PDF-era incentives and lowest common denominator tools.
-A modular, structured substrate is the precondition for both human and machine reuse, and it is the bet OXA makes.
+A modular, structured substrate is the precondition for both human and machine reuse, and it is the principle at the core of OXA.
+
+The challenge is how we get from where we are, a static narrative document, to where we want to go, science communicated through the modular elements of science, without first requiring that scientists share their work in completely new ways or changed incentive structures. This has consistently been a sticking point during shifts towards open science practices. The burden is placed on already over-busy researchers who don't necessarily the skills or time to do this additional work. OXA addresses this through its positioning as an exchange format. Existing articles can be decomposed into modular elements and what's then possible with these elements can be demonstrated immediately, both not requiring new work from researchers, but showing what's possible when we can communicate science in new ways, and can motivate why a researcher would want to work differently. Examples such as the openRxiv and Curvenote Reader partnership described below demonstrate this 'show, don't tell' approach. Additionally OXA provides a pathway to sharing science in new ways. A researcher can begin to layer in sharing notebooks, interactive figures, data and code through the process of publishing an article. Crucially, OXA helps us build the bridge from where we are to where we want to go. 
 
 This paper is itself written in MyST Markdown and submitted through the SciPy
 proceedings toolchain, which since 2024 has been built on Curvenote
@@ -64,8 +66,8 @@ document model that already underlies these tools.
 
 ## From modular software to modular science
 
-The SciPy community already lives in a world that the rest of science has not yet
-reached. SciPy [@scipy], NumPy [@numpy], pandas [@pandas1;@pandas2],
+The SciPy community already lives in a world that is not how most of the rest of science yet
+operates. SciPy [@scipy], NumPy [@numpy], pandas [@pandas1;@pandas2],
 Matplotlib [@matplotlib], and the libraries built on them are modular _and_
 composable. A user can `import` what they need, build something new, and the
 result inherits the trustworthiness of its constituents. Progress is
@@ -106,7 +108,7 @@ recombined, and extended without losing their integrity or provenance
   - Integrated system with provenance
 ```
 
-Modular science is the bet that scientific outputs can become as composable as
+Modular science is the principle that scientific outputs can become as composable as
 scientific software, given the right standards, identifiers, tooling, and
 packaging infrastructure. The emerging primitives are visible: `import figure from paper` is no longer a metaphor. With component-level identifiers and a
 structured-document standard, a figure published in one preprint can be embedded —
@@ -178,6 +180,8 @@ alongside licensing and metadata experts — gathered to build a working,
 federated reference architecture using real bioRxiv content and connected
 authoring tools. The convened tool developers spanned Stencila, MyST, Quarto, Curvenote, OpenAlex, and eLife. The explicit philosophy was implementation-first: prioritizing
 working software and demonstrable interoperability over abstract standardization.
+
+In this meeting, a 'bedrock, soil, flowers' framework was put forth. In a modular science ecosystem, the modular elements of science - the data, code, images, protocols - are the 'bedrock'. They are the foundation on which scientific claims are built. The 'flowers' are the output of combining these modular elements - the articles, visualizations, discovery tools, the things we typically consume or explore as readers of science. What's missing now is not a lack of bedrock elements, or ideas for flowers, and how science can be shared, but the connections from the bedrock that would allow for more 'flowers' and experiments in scientific communication. The 'soil' is the missing middle that provides the real basis for new models of scientific communication, attribution, discovery and remixing to occur. By working on that missing middle 'soil' layer, that's the unlocking and enabling function that makes so many more approaches possible, and what the tool developers at this meeting identified as a fundamental missing component in the ecosystem. It's crucial that these soil layers be community stewarded and governed, as an element of the ecosystem that is meant to connect different substrates and enable broad use and creativity from the developers of tools in the scientific space. 
 
 ## The RFC and community process
 
@@ -360,7 +364,7 @@ OXA is best understood as the point where these threads converge, coordinated th
 The first large-scale implementation of OXA is a partnership between Curvenote and
 openRxiv, the independent non-profit that stewards bioRxiv and medRxiv. On June 11,
 2026, openRxiv launched its first openRxiv Labs experiment: the Curvenote Reader,
-an interactive reading experience layered over the entire bioRxiv corpus.
+an interactive reading experience layered over the entire bioRxiv corpus. [@openrxivlabsreader]
 
 The enabling work was a translation of openRxiv's JATS-format XML archive into an
 early version of OXA.
@@ -368,9 +372,9 @@ The Reader lets readers explore references, terminology, expanded figures, and r
 
 This implementation is significant for three reasons. First, it demonstrates that
 a large, real-world JATS archive can be translated into OXA at scale.
-Second, it validates OXA's role as a structural "bedrock": once content is
-structured, new experiences (interactive reading, querying, future tooling) can
-grow on top of it. Third, it embodies the
+Second, it validates OXA's "soil" thesis:
+once content is structured, new "flower" experiences (interactive reading,
+querying, future tool development) can be built on top. Third, it embodies the
 constellation model of research that openRxiv has articulated — in which a preprint
 is one node connected to data repositories, reviews, replications, and trust
 signals across multiple organizations rather than a self-contained PDF. OXA is the
@@ -416,17 +420,17 @@ high-fidelity linking system inside the bundle that carries licensing,
 attribution, and other metadata; an open preprint foundation (e.g. the broader openRxiv
 ecosystem) that accepts and serves modular outputs as first-class; machine-legible trust
 signals; and reproducible execution environments. Every one of these has working
-open-source implementations today. The gap is integrative: producing tooling that
+open-source implementations today. The gap is integrative and connective: producing tooling that
 hides this complexity from the researcher while preserving the openness of the
 substrate beneath.
 
-Cultures change when the new way is _better_ than the old way, not when the old
-way is merely punished. The most durable path to a modular research record is to
+Cultures change when the new way is _better_ than the old way, offering a 'moving towards', rather than 
+just a 'moving away from'. The most durable path to a modular research record is to
 make modular outputs visibly more useful than the PDF — to the original authors,
 their collaborators, and the broader field — and to make the path from existing
 work to modular output smooth enough that a typical lab can take it easily.
-Funder and publisher policy still matters, but it is
-most effective as the last mile rather than the first.
+Funder and publisher policies and changing incentive structures are still crucial, but when there is a real carrot with a compelling reason to change, those policies can be more effective and impactful.
+
 
 ## Governance and steering
 
@@ -451,10 +455,11 @@ the RFC process; the licensing-and-attribution framework for modular components 
 under active development; and the 2026 roadmap includes further large-scale pilots
 and deeper integration of the Reader experience into bioRxiv and medRxiv. The
 broader test will be adoption: whether tool builders, publishers, and repositories
-converge on OXA as a shared bedrock. We invite the SciPy community — long a leader
+converge on OXA as a shared soil layer. We invite the SciPy community — long a leader
 in computational, open, and reproducible science, and the originators of much of
 the composable software ecosystem this paper takes as its model — to engage with
-the specification, contribute RFCs, and build on the architecture.
+the specification, contribute RFCs, and build on the architecture to ensure it's fit for
+purpose and for the future. 
 
 ## Acknowledgments
 
