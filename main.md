@@ -33,8 +33,8 @@ global and continuous. Yet the way we communicate research has barely moved: the
 canonical output is still a static document modeled on the printed page. Science
 is, in effect, trapped in a paper-shaped box, where content is static and
 narrative-driven, and the assets around the research — the data, code, protocols,
-and notebooks — are relegated to supplementary ZIP files that are very hard to
-gain access to. Crucially, the reviews and credit attached to research accrue to
+and notebooks — are relegated to supplementary ZIP files that are hard to access.
+Crucially, the reviews and credit attached to research accrue to
 the container itself rather than to the components beneath it.
 
 The Open Exchange Architecture (OXA) is a response to this mismatch. It reconceives
@@ -174,11 +174,11 @@ missing data substrate for exactly that re-imagination.
 
 ### San Diego standards meeting
 
-OXA emerged at an in-person working meeting held in San Diego in November, 2025, hosted by openRxiv and the Continuous Science Foundation and documented in the report "From Tools to Adoption: A Path to Modular and Interactive Scientific Publishing" [@doi:10.62329/kcep6732].
+OXA emerged at an in-person working meeting held in San Diego in November 2025, hosted by openRxiv and the Continuous Science Foundation and documented in the report "From Tools to Adoption: A Path to Modular and Interactive Scientific Publishing" [@doi:10.62329/kcep6732].
 Twenty-five open-science leaders — developers of the leading modular publishing tools,
 alongside licensing and metadata experts — gathered to build a working,
 federated reference architecture using real bioRxiv content and connected
-authoring tools. The convened tool developers spanned Stencila, MyST, Quarto, Curvenote, openAlex, and eLife. The explicit philosophy was implementation-first: prioritizing
+authoring tools. The convened tool developers spanned Stencila, MyST, Quarto, Curvenote, OpenAlex, and eLife. The explicit philosophy was implementation-first: prioritizing
 working software and demonstrable interoperability over abstract standardization.
 
 In this meeting, a 'bedrock, soil, flowers' framework was put forth. In a modular science ecosystem, the modular elements of science - the data, code, images, protocols - are the 'bedrock'. They are the foundation on which scientific claims are built. The 'flowers' are the output of combining these modular elements - the articles, visualizations, discovery tools, the things we typically consume or explore as readers of science. What's missing now is not a lack of bedrock elements, or ideas for flowers, and how science can be shared, but the connections from the bedrock that would allow for more 'flowers' and experiments in scientific communication. The 'soil' is the missing middle that provides the real basis for new models of scientific communication, attribution, discovery and remixing to occur. By working on that missing middle 'soil' layer, that's the unlocking and enabling function that makes so many more approaches possible, and what the tool developers at this meeting identified as a fundamental missing component in the ecosystem. It's crucial that these soil layers be community stewarded and governed, as an element of the ecosystem that is meant to connect different substrates and enable broad use and creativity from the developers of tools in the scientific space. 
@@ -197,8 +197,8 @@ repositories in the `oxa-dev` GitHub organization.
 
 The specification and schemas are CC0-licensed, and the tooling is MIT-licensed,
 lowering the barrier for tool builders, publishers, and repositories to adopt and
-extend the format. This community-first approach is key and the architecture
-is built on community standards and open-source values.
+extend the format. This community-first approach is central: the architecture rests on open
+standards and open-source values rather than on any single vendor's platform.
 
 ## Technical architecture
 
@@ -271,7 +271,7 @@ publishing and interactive articles; and the document-transformation pipelines o
 JATS is the structural starting point. From it, OXA borrows the core idea of a
 single, standardized, machine-readable vocabulary for scholarly content, and
 inherits much of its element naming. What OXA does not inherit is JATS's
-print-shaped orientation. These print-shaped limitation was reached
+print-shaped orientation. This limitation was recognized
 independently by many of the projects in this space.
 
 The most direct ancestor is the Stencila schema. Since 2019, Stencila has
@@ -303,7 +303,7 @@ modular ways of working with scientific content. The integrations that modern
 research demands — executable cells, live/interactive outputs, component-level provenance, modularity —
 have no native home in a format designed to describe static, print documents.
 
-The way past that blocker is a structured intermediate representation that includes computational content, modularity and composability. There
+The way past that blocker is a structured intermediate representation that accommodates computational content and supports modularity and composability. There
 are now several demonstrations of this working at scale. Pandoc popularized the
 pattern: parse documents into a typed abstract syntax tree and transform that tree
 into many standardized outputs [@pandoc]. Quarto [@quarto] and MyST Markdown build
@@ -367,8 +367,7 @@ openRxiv, the independent non-profit that stewards bioRxiv and medRxiv. On June 
 an interactive reading experience layered over the entire bioRxiv corpus. [@openrxivlabsreader]
 
 The enabling work was a translation of openRxiv's JATS-format XML archive into an
-early version of OXA. A key part of enabling this
-experiment was processing their archive of JATS-format XML.
+early version of OXA.
 The Reader lets readers explore references, terminology, expanded figures, and related works while staying in the context of the original preprint, with the same URL structure as bioRxiv. The translation covered 26TB and over 500,000 preprint versions in the bioRxiv and medRxiv corpus.
 
 This implementation is significant for three reasons. First, it demonstrates that
@@ -380,6 +379,37 @@ constellation model of research that openRxiv has articulated — in which a pre
 is one node connected to data repositories, reviews, replications, and trust
 signals across multiple organizations rather than a self-contained PDF. OXA is the
 structural substrate that makes such a constellation addressable.
+
+## Emerging tooling
+
+A small ecosystem of tooling is beginning to form around the specification,
+spanning both validation and conversion.
+
+The canonical reference tool is the `oxa` command-line utility, developed in the
+`oxa-dev` organization. Its remit is deliberately narrow: it validates OXA
+documents against the published schemas. It can check a single file or a whole
+glob, read from standard input for use in pipes, validate a fragment against a
+specific node type (for example, `oxa validate --type Heading`), and report
+results through conventional exit codes so that it slots cleanly into
+continuous-integration and pre-commit checks. It fronts a small package family
+that includes `@oxa/core` for programmatic validation and `oxa-types` for
+TypeScript definitions. The narrow scope is by design: a lightweight,
+MIT-licensed validator lowers the barrier for other tools to emit OXA with
+confidence, in keeping with the architecture's aim of enabling many independent
+implementations.
+
+Conversion is the second strand, and the most developed work to date comes from
+Stencila. Building on its canonical, strongly typed schema, Stencila has implemented
+a bidirectional OXA codec that both decodes OXA JSON into the Stencila document model
+and encodes that model back out to OXA, tracking any information lost in either
+direction. Because this conversion routes through the same canonical schema that
+already backs Stencila's parsers and codecs for many other formats, it inherits that
+format support: MyST Markdown, Quarto (`.qmd`), Jupyter notebooks (`.ipynb`),
+Microsoft Word (`.docx`), and other Markdown flavors can be converted into OXA — and
+back out again. This is the practical payoff of the typed-node lineage traced above:
+rather than asking authors to adopt a new syntax, OXA can meet them in the formats
+they already use, and documents they have already written become a source of
+structured, OXA-native content.
 
 ## Open standards as the substrate
 
